@@ -36,4 +36,9 @@ describe 'NicoLinkFilter' do
     let(:text) { '<b>hoge</b> im5678' }
     it { expect(subject).to eq '<b>hoge</b> <a href="http://seiga.nicovideo.jp/seiga/im5678">im5678</a>' }
   end
+
+  context '<a href="http://www.nicovideo.jp/watch/sm9">http://www.nicovideo.jp/watch/sm9</a>' do
+    let(:text) { '<a href="http://www.nicovideo.jp/watch/sm9">http://www.nicovideo.jp/watch/sm9</a>' }
+    it { expect(subject).to eq '<a href="http://www.nicovideo.jp/watch/sm9">http://www.nicovideo.jp/watch/sm9</a>' }
+  end
 end

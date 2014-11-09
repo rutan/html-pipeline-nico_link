@@ -11,6 +11,7 @@ module HTML
 
       def call
         doc.search('text()').each do |node|
+          next if has_ancestor?(node, IGNORE_PARENTS)
           content = node.to_html
           has_prev_node = !!(node.previous_element)
           html = apply_filter(content, has_prev_node)
@@ -54,6 +55,8 @@ module HTML
           )
         /ix
       end
+
+      IGNORE_PARENTS = %w[pre code a style script].to_set
 
       DEFAULT_PATTERNS = [
         {
