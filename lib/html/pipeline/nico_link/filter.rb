@@ -1,4 +1,5 @@
 require 'html/pipeline'
+require 'erb'
 
 module HTML
   class Pipeline
@@ -11,21 +12,22 @@ module HTML
       def call
         doc.search('text()').each do |node|
           content = node.to_html
-          html = apply_filter(content)
+          has_prev_node = !!(node.previous_element)
+          html = apply_filter(content, has_prev_node)
           next if html == content
           node.replace(html)
         end
         doc
       end
 
-      def apply_filter(content)
+      def apply_filter(content, has_prev_node = false)
         content = content.dup
         self.patterns.each do |pattern_set|
           content.gsub!(pattern_set[:pattern]) do
             space = $1
             text = $2
             url = pattern_set[:link].gsub('%s', text)
-            "#{space}<a href=\"#{url}\">#{text}</a>"
+            "#{space.size > 0 ? space : (has_prev_node ? ' ' : '')}<a href=\"#{ERB::Util.html_escape(url)}\">#{ERB::Util.html_escape(text)}</a>"
           end
         end
         content
