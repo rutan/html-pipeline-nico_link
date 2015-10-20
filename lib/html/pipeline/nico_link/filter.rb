@@ -10,7 +10,7 @@ module HTML
       end
 
       def call
-        doc.search('text()').each do |node|
+        doc.search('.//text()').each do |node|
           next if has_ancestor?(node, IGNORE_PARENTS)
           content = node.to_html
           has_prev_node = !!(node.previous_element)
