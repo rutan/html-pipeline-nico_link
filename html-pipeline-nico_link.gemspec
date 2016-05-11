@@ -6,11 +6,10 @@ require 'html/pipeline/nico_link/version'
 Gem::Specification.new do |spec|
   spec.name          = 'html-pipeline-nico_link'
   spec.version       = HTML::Pipeline::NicoLink::VERSION
-  spec.authors       = ['Ru/MuckRu']
+  spec.authors       = ['ru_shalm']
   spec.email         = ['ru_shalm@hazimu.com']
   spec.summary       = 'niconico link for html-pipeline'
-  spec.description   = 'niconico link for html-pipeline'
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/rutan/html-pipeline-nico_link/'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
