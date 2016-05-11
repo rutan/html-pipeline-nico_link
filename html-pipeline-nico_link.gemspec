@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = HTML::Pipeline::NicoLink::VERSION
   spec.authors       = ['Ru/MuckRu']
   spec.email         = ['ru_shalm@hazimu.com']
-  spec.summary       = %q{niconico link for html-pipeline}
-  spec.description   = %q{niconico link for html-pipeline}
+  spec.summary       = 'niconico link for html-pipeline'
+  spec.description   = 'niconico link for html-pipeline'
   spec.homepage      = ''
   spec.license       = 'MIT'
 
@@ -18,9 +18,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'html-pipeline', '~> 2.0'
+  spec.add_dependency 'html-pipeline', '~> 2.4'
 
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.1.0'
+  spec.add_development_dependency 'rubocop', '~> 0.40.0'
 end
