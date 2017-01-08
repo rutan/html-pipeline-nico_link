@@ -126,6 +126,10 @@ module HTML
           pattern: /kn\d+/,
           link: 'http://niconare.nicovideo.jp/watch/%s',
         },
+        {
+          pattern: /gm\d+/,
+          link: 'http://game.nicovideo.jp/atsumaru/games/%s',
+        },
       ].freeze
     end
   end
