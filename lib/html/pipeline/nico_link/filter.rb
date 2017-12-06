@@ -124,11 +124,11 @@ module HTML
         },
         {
           pattern: /kn\d+/,
-          link: 'http://niconare.nicovideo.jp/watch/%s',
+          link: 'https://niconare.nicovideo.jp/watch/%s',
         },
         {
           pattern: /gm\d+/,
-          link: 'http://game.nicovideo.jp/atsumaru/games/%s',
+          link: 'https://game.nicovideo.jp/atsumaru/games/%s',
         },
         {
           pattern: /mt\d+/,
