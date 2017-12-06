@@ -4,6 +4,9 @@ AllCops:
     - tmp/**/*
     - vendor/**/*
 
+BlockLength:
+  Enabled: false
+
 SpecialGlobalVars:
   Enabled: false
 

@@ -46,7 +46,7 @@ module HTML
         @merged_pattern ||= /\b(?:(#{patterns.map { |n| n[:pattern] }.join(')|(')}))\b/
       end
 
-      IGNORE_PARENTS = %w(pre code a style script).to_set
+      IGNORE_PARENTS = %w[pre code a style script].to_set
 
       DEFAULT_PATTERNS = [
         {
@@ -120,7 +120,7 @@ module HTML
         {
           pattern: /jps\d{1,14}/,
           link: 'http://jpstore.dwango.jp/products/detail.php?product_id=%s',
-          convert: -> (str) { str.sub('jps', '') },
+          convert: ->(str) { str.sub('jps', '') },
         },
         {
           pattern: /kn\d+/,
