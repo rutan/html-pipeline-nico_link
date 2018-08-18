@@ -134,6 +134,10 @@ module HTML
           pattern: /mt\d+/,
           link: 'https://mtm.nicovideo.jp/watch/%s',
         },
+        {
+          pattern: /nq\d+/,
+          link: 'https://q.nicovideo.jp/watch/%s',
+        },
       ].freeze
     end
   end
