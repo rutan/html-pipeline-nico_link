@@ -46,7 +46,7 @@ module HTML
         @merged_pattern ||= /\b(?:(#{patterns.map { |n| n[:pattern] }.join(')|(')}))\b/
       end
 
-      IGNORE_PARENTS = %w[pre code a style script].to_set
+      IGNORE_PARENTS = %w(pre code a style script).to_set
 
       DEFAULT_PATTERNS = [
         {
