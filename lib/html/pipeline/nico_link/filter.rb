@@ -54,7 +54,7 @@ module HTML
           link: 'http://www.nicovideo.jp/watch/%s',
         },
         {
-          pattern: %r{(?:watch|user|myvideo|mylist)/\d{1,10}},
+          pattern: %r{(?:watch|user|myvideo|mylist|series)/\d{1,10}},
           link: 'http://www.nicovideo.jp/%s',
         },
         {
