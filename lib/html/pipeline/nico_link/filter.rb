@@ -123,16 +123,8 @@ module HTML
           convert: ->(str) { str.sub('jps', '') },
         },
         {
-          pattern: /kn\d+/,
-          link: 'https://niconare.nicovideo.jp/watch/%s',
-        },
-        {
           pattern: /gm\d+/,
           link: 'https://game.nicovideo.jp/atsumaru/games/%s',
-        },
-        {
-          pattern: /mt\d+/,
-          link: 'https://mtm.nicovideo.jp/watch/%s',
         },
         {
           pattern: /nq\d+/,
