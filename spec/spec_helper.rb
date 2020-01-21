@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 require 'rspec'
 require 'html/pipeline/nico_link'
 
-Dir.glob('./support/**/*.rb').each { |f| require f }
+Dir.glob('./support/**/*.rb').sort.each { |f| require f }

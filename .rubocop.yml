@@ -1,32 +1,89 @@
 AllCops:
   Exclude:
-    - bin/**/*
     - tmp/**/*
     - vendor/**/*
+  TargetRubyVersion: 2.4
+  DisplayCopNames: true
 
-BlockLength:
+# use japanese :)
+Style/AsciiComments:
   Enabled: false
 
-SpecialGlobalVars:
+# use method chain ( avoid use `end.compact` )
+#
+#   hoge.map { |item|
+#     item.piyo
+#   }.compact
+Style/BlockDelimiters:
   Enabled: false
 
-AsciiComments:
+# no document
+Style/Documentation:
   Enabled: false
 
-ClassLength:
-  Max: 200
-
-Documentation:
+# use `!!hoge`
+Style/DoubleNegation:
   Enabled: false
 
-LineLength:
+# empty case is useful
+#
+#  case
+#  when user.admin?
+#    ...
+#  when user.active?
+#    ...
+#  else
+#    ...
+#  end
+Style/EmptyCaseCondition:
+  Enabled: false
+
+# my preference :)
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+# use `-> {}` syntax
+Style/Lambda:
+  Enabled: false
+
+# see Style/BlockDelimiters
+Style/MultilineBlockChain:
+  Enabled: false
+
+# I feel `.zero?` difficult to understand...
+Style/NumericPredicate:
+  Enabled: false
+
+# %w[a b c] or %i[a b c] ?
+Style/SymbolArray:
+  Enabled: false
+
+# incompatible DSL
+Layout/EmptyLinesAroundArguments:
+  Enabled: false
+
+# my preference :)
+Layout/LineLength:
   Max: 120
   Exclude:
     - spec/**/*
 
-MethodLength:
+# :(
+Metrics/AbcSize:
   Max: 30
 
-TrailingCommaInLiteral:
-  EnforcedStyleForMultiline: comma
+# incompatible DSL
+Metrics/BlockLength:
+  Enabled: false
+
+# incompatible DSL
+Metrics/ClassLength:
+  Enabled: false
+
+# my preference :(
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/ParameterLists:
+  CountKeywordArgs: false
 

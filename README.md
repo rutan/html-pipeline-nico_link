@@ -1,7 +1,5 @@
 # Html::Pipeline::NicoLink
 
-[![Build Status](https://travis-ci.org/rutan/html-pipeline-nico_link.svg?branch=master)](https://travis-ci.org/rutan/html-pipeline-nico_link)
-
 An HTML::Pipeline filter for niconico(http://www.nicovideo.jp) description links.
 
 niconicoの動画説明文中のオートリンクです。mylist2.jsの定義を参考にしています。
