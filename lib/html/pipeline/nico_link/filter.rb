@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'html/pipeline'
 require 'erb'
 
@@ -12,9 +14,11 @@ module HTML
       def call
         doc.xpath('.//text()').each do |node|
           next if has_ancestor?(node, IGNORE_PARENTS)
+
           content = node.to_html
           html = apply_filter(content)
           next if html == content
+
           node.replace(html)
         end
         doc
@@ -23,7 +27,7 @@ module HTML
       def apply_filter(content)
         content = content.dup
         content.gsub!(merged_pattern) do |text|
-          index = $~.captures.index { |n| n }
+          index = Regexp.last_match.captures.index { |n| n }
           pattern_set = patterns[index]
           value = pattern_set[:convert] ? pattern_set[:convert].call(text) : text
           url = pattern_set[:link].gsub('%s', value)
@@ -37,7 +41,7 @@ module HTML
           {
             pattern: pattern_set[:pattern],
             link: pattern_set[:link],
-            convert: pattern_set[:convert],
+            convert: pattern_set[:convert]
           }
         end
       end
@@ -46,90 +50,90 @@ module HTML
         @merged_pattern ||= /\b(?:(#{patterns.map { |n| n[:pattern] }.join(')|(')}))\b/
       end
 
-      IGNORE_PARENTS = %w(pre code a style script).to_set
+      IGNORE_PARENTS = %w[pre code a style script].to_set
 
       DEFAULT_PATTERNS = [
         {
           pattern: /(?:sm|nm|so|ca|ax|yo|nl|ig|na|cw|z[a-e]|om|sk|yk)\d{1,14}/,
-          link: 'http://www.nicovideo.jp/watch/%s',
+          link: 'http://www.nicovideo.jp/watch/%s'
         },
         {
           pattern: %r{(?:watch|user|myvideo|mylist|series)/\d{1,10}},
-          link: 'http://www.nicovideo.jp/%s',
+          link: 'http://www.nicovideo.jp/%s'
         },
         {
           pattern: /co\d{1,14}/,
-          link: 'http://com.nicovideo.jp/%s',
+          link: 'http://com.nicovideo.jp/%s'
         },
         {
           pattern: /ch\d{1,14}/,
-          link: 'http://ch.nicovideo.jp/%s',
+          link: 'http://ch.nicovideo.jp/%s'
         },
         {
           pattern: /ar\d{1,14}/,
-          link: 'http://ch.nicovideo.jp/article/%s',
+          link: 'http://ch.nicovideo.jp/article/%s'
         },
         {
           pattern: /td\d+/,
-          link: 'http://3d.nicovideo.jp/works/%s',
+          link: 'http://3d.nicovideo.jp/works/%s'
         },
         {
           pattern: /nc\d{1,14}/,
-          link: 'http://commons.nicovideo.jp/material/%s',
+          link: 'http://commons.nicovideo.jp/material/%s'
         },
         {
           pattern: /(?:dw\d+|az[A-Z0-9]{10}|ys[a-zA-Z0-9-]+_[a-zA-Z0-9-]+|ga\d+|ip[\d_]+|gg[a-zA-Z0-9]+-[a-zA-Z0-9-]+)/,
-          link: 'http://ichiba.nicovideo.jp/item/%s',
+          link: 'http://ichiba.nicovideo.jp/item/%s'
         },
         {
           pattern: /lv\d{1,14}/,
-          link: 'http://live.nicovideo.jp/watch/%s',
+          link: 'http://live.nicovideo.jp/watch/%s'
         },
         {
           pattern: /[sm]g\d{1,14}/,
-          link: 'http://seiga.nicovideo.jp/watch/%s',
+          link: 'http://seiga.nicovideo.jp/watch/%s'
         },
         {
           pattern: /bk\d{1,14}/,
-          link: 'http://seiga.nicovideo.jp/watch/%s',
+          link: 'http://seiga.nicovideo.jp/watch/%s'
         },
         {
           pattern: /im\d{1,14}/,
-          link: 'http://seiga.nicovideo.jp/seiga/%s',
+          link: 'http://seiga.nicovideo.jp/seiga/%s'
         },
         {
           pattern: %r{commons\.nicovideo\.jp/user/\d+},
-          link: 'http://%s',
+          link: 'http://%s'
         },
         {
           pattern: %r{niconicommons\.jp/user/\d+},
-          link: 'http://www.%s',
+          link: 'http://www.%s'
         },
         {
           pattern: %r{user/illust/\d+},
-          link: 'http://seiga.nicovideo.jp/%s',
+          link: 'http://seiga.nicovideo.jp/%s'
         },
         {
           pattern: %r{clip/\d+},
-          link: 'http://seiga.nicovideo.jp/%s',
+          link: 'http://seiga.nicovideo.jp/%s'
         },
         {
           pattern: %r{ch\.nicovideo\.jp/[a-zA-Z0-9][-_a-zA-Z0-9]+(?=[^\-_A-Za-z0-9/]|$)},
-          link: 'http://%s',
+          link: 'http://%s'
         },
         {
           pattern: /jps\d{1,14}/,
           link: 'http://jpstore.dwango.jp/products/detail.php?product_id=%s',
-          convert: ->(str) { str.sub('jps', '') },
+          convert: ->(str) { str.sub('jps', '') }
         },
         {
           pattern: /gm\d+/,
-          link: 'https://game.nicovideo.jp/atsumaru/games/%s',
+          link: 'https://game.nicovideo.jp/atsumaru/games/%s'
         },
         {
           pattern: /nq\d+/,
-          link: 'https://q.nicovideo.jp/watch/%s',
-        },
+          link: 'https://q.nicovideo.jp/watch/%s'
+        }
       ].freeze
     end
   end
